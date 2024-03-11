@@ -4,8 +4,8 @@ Easily remove multiple GitHub repositories at once.
 ## Installation
 Git Gone is a simple Sinatra application that you can run locally or deploy to a server. To install, clone the repository and run `bundle install` to install the required gems.
 
-### Deploy to Hetzner using Kamal
-First, install Kamal by running `gem install kamal`. Next, create a server with Hetzner. Next, change the `config/deploy.yml` file and replace the image, servers, and registry with your information. Lastly, run `kamal setup` to deploy to your server.
+### Deploy using Kamal
+First, install Kamal by running `gem install kamal`. Next, create a server with Hetzner or any other hosting provider. Next, change the `config/deploy.yml` file and replace the image, servers, and registry with your information. Lastly, run `kamal setup` to deploy to your server.
 
 ### Deploy to Heroku
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/jimmypoulsen/git-gone/tree/main)
