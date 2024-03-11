@@ -6,7 +6,11 @@ get "/" do
 end
 
 get "/repositories" do
-  @repositories = octokit_client.repositories
+  begin
+    @repositories = octokit_client.repositories
+  rescue Octokit::Unauthorized => e
+    redirect to "/"
+  end
 
   erb :repositories
 end
@@ -16,12 +20,16 @@ delete "/repositories" do
 
   @responses = []
 
-  repositories.each do |repository|
-    octokit_client.delete_repo(repository)
-    @responses << [repository, "Deleted"]
-  rescue => e
-    @responses << [repository, e]
-    next
+  if repositories.nil?
+    @responses << ["No repositories selected", "Error"]
+  else
+    repositories.each do |repository|
+      octokit_client.delete_repo(repository)
+      @responses << [repository, "Deleted"]
+    rescue => e
+      @responses << [repository, e]
+      next
+    end
   end
 
   erb :delete
