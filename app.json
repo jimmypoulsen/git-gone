@@ -1,0 +1,13 @@
+{
+  "name": "git-gone",
+  "description": "Delete your GitHub repos with a single click",
+  "repository": "https://github.com/jimmypoulsen/git-gone/tree/main/",
+  "logo": "https://www.herokucdn.com/deploy/button.svg",
+  "keywords": ["ruby", "sinatra", "heroku"],
+  "env": {
+    "RACK_ENV": {
+      "description": "The environment in which the app is running",
+      "value": "production"
+    }
+  }
+}
