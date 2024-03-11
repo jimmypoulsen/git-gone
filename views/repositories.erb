@@ -2,22 +2,27 @@
 
 <h3>Account: <%= @client.user[:login] %></h3>
 
-<form action="/repositories" method="post">
-  <input type="hidden" name="_method" value="delete" />
+<% if @repositories.empty? %>
+  <p>No repositories found.</p>
+<% else %>
+  <form action="/repositories" method="post">
+    <input type="hidden" name="_method" value="delete" />
+    <input type="hidden" name="fine_grained_access_token" value="<%= params[:fine_grained_access_token] %>" />
 
-  <% @repositories.each do |repo| %>
-    <pre><%#=repo.inspect %></pre>
-    <div style="display: block;">
-      <input
-        type="checkbox"
-        name="repositories[]"
-        id="repositories_<%= repo.id %>"
-        value="<%= repo.full_name %>" />
-      <label for="repositories_<%= repo.id %>">
-        <%= repo.full_name %>
-      </label>
-    </div>
-  <% end %>
+    <% @repositories.each do |repo| %>
+      <pre><%#=repo.inspect %></pre>
+      <div style="display: block;">
+        <input
+          type="checkbox"
+          name="repositories[]"
+          id="repositories_<%= repo.id %>"
+          value="<%= repo.full_name %>" />
+        <label for="repositories_<%= repo.id %>">
+          <%= repo.full_name %>
+        </label>
+      </div>
+    <% end %>
 
-  <input type="submit" value="Delete" />
-</form>
+    <input type="submit" value="Delete" />
+  </form>
+<% end %>

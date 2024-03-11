@@ -1,0 +1,7 @@
+<h2>Responses</h2>
+
+<ul>
+  <% @responses.each do |repository, message| %>
+    <li><%= repository %>: <%= message %></li>
+  <% end %>
+</ul>

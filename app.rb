@@ -6,9 +6,29 @@ get "/" do
 end
 
 get "/repositories" do
-  access_token = params[:fine_grained_access_token]
-  @client = Octokit::Client.new(access_token: access_token)
-  @repositories = @client.repositories
+  @repositories = octokit_client.repositories
 
   erb :repositories
+end
+
+delete "/repositories" do
+  repositories = params[:repositories]
+
+  @responses = []
+
+  repositories.each do |repository|
+    octokit_client.delete_repo(repository)
+    @responses << [repository, "Deleted"]
+  rescue => e
+    @responses << [repository, e]
+    next
+  end
+
+  erb :delete
+end
+
+private
+
+def octokit_client
+  @client ||= Octokit::Client.new(access_token: params[:fine_grained_access_token])
 end
