@@ -1,0 +1,13 @@
+service: git-gone
+image: jimmypoulsen96/git-gone
+servers:
+  - 135.181.193.180
+registry:
+  username: jimmypoulsen96
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+healthcheck:
+  path: /up
+  port: 4567
+  max_attempts: 7
+  interval: 10s

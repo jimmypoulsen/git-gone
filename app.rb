@@ -5,6 +5,10 @@ get "/" do
   erb :index
 end
 
+get "/up" do
+  "Oh yeah"
+end
+
 get "/repositories" do
   begin
     @repositories = octokit_client.repositories
