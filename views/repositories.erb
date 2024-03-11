@@ -1,0 +1,23 @@
+<h2>Repositories</h2>
+
+<h3>Account: <%= @client.user[:login] %></h3>
+
+<form action="/repositories" method="post">
+  <input type="hidden" name="_method" value="delete" />
+
+  <% @repositories.each do |repo| %>
+    <pre><%#=repo.inspect %></pre>
+    <div style="display: block;">
+      <input
+        type="checkbox"
+        name="repositories[]"
+        id="repositories_<%= repo.id %>"
+        value="<%= repo.full_name %>" />
+      <label for="repositories_<%= repo.id %>">
+        <%= repo.full_name %>
+      </label>
+    </div>
+  <% end %>
+
+  <input type="submit" value="Delete" />
+</form>
